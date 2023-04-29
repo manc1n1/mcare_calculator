@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 import 'package:mcare_calculator/info/app_color_pallet.dart';
-import 'package:mcare_calculator/info/coverage_data.dart';
 import 'package:mcare_calculator/models/coverage_model.dart';
+import 'package:mcare_calculator/info/coverage_data.dart';
 import 'package:mcare_calculator/screens/calculator.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -56,43 +56,41 @@ class _HomeScreenState extends State<HomeScreen> {
                   // mainAxisSpacing: 25,
                   shrinkWrap: true,
                   physics: const NeverScrollableScrollPhysics(),
-                  children:
-                      // coverages.map((coverage) => Text(coverage.type)).toList(),
-                      coverages
-                          .map(
-                            (coverage) => InkWell(
-                              onTap: () => selectCoverage(context, coverage),
-                              splashFactory: InkRipple.splashFactory,
-                              splashColor: AppColorPallet.white,
+                  children: coverages
+                      .map(
+                        (coverage) => InkWell(
+                          onTap: () => selectCoverage(context, coverage),
+                          splashFactory: InkRipple.splashFactory,
+                          splashColor: AppColorPallet.white,
+                          borderRadius: BorderRadius.circular(50),
+                          child: Container(
+                            // padding: const EdgeInsets.all(15),
+                            decoration: BoxDecoration(
+                              gradient: LinearGradient(
+                                colors: [
+                                  coverage.color.withOpacity(0.4),
+                                  coverage.color,
+                                ],
+                                begin: Alignment.topLeft,
+                                end: Alignment.bottomRight,
+                              ),
                               borderRadius: BorderRadius.circular(50),
-                              child: Container(
-                                // padding: const EdgeInsets.all(15),
-                                decoration: BoxDecoration(
-                                  gradient: LinearGradient(
-                                    colors: [
-                                      coverage.color.withOpacity(0.4),
-                                      coverage.color,
-                                    ],
-                                    begin: Alignment.topLeft,
-                                    end: Alignment.bottomRight,
-                                  ),
-                                  borderRadius: BorderRadius.circular(50),
-                                ),
-                                child: Center(
-                                  child: Text(
-                                    coverage.type,
-                                    textAlign: TextAlign.center,
-                                    style: const TextStyle(
-                                      fontSize: 50,
-                                      fontWeight: FontWeight.bold,
-                                      color: AppColorPallet.backgroundLight,
-                                    ),
-                                  ),
+                            ),
+                            child: Center(
+                              child: Text(
+                                coverage.type,
+                                textAlign: TextAlign.center,
+                                style: const TextStyle(
+                                  fontSize: 50,
+                                  fontWeight: FontWeight.bold,
+                                  color: AppColorPallet.backgroundLight,
                                 ),
                               ),
                             ),
-                          )
-                          .toList(),
+                          ),
+                        ),
+                      )
+                      .toList(),
                 ),
               ),
             ],
